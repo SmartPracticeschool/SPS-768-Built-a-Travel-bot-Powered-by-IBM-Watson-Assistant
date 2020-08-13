@@ -1,0 +1,302 @@
+{
+  "intents": [
+    {
+      "intent": "hotels",
+      "examples": [
+        {
+          "text": "goa hotels"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "hotelsbooking",
+      "examples": [
+        {
+          "text": "stay"
+        }
+      ],
+      "description": "hotel stay"
+    },
+    {
+      "intent": "asking",
+      "examples": [
+        {
+          "text": "beaches goa"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greet",
+      "examples": [
+        {
+          "text": "hi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "images",
+      "examples": [
+        {
+          "text": "pics"
+        }
+      ],
+      "description": "image goa"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "asking",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "goa beach",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "image",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "photo",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "greet",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "hello",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "hotelbooking",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "booking",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "hotel",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "hotel",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "greet",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "hi"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#greet",
+      "dialog_node": "node_1_1597145830785",
+      "previous_sibling": "node_1_1597145902602"
+    },
+    {
+      "type": "standard",
+      "title": "hotel",
+      "output": {
+        "generic": [
+          {
+            "title": "hotels",
+            "source": "https://www.india.com/wp-content/uploads/2017/03/Goa-Final.jpg",
+            "response_type": "image"
+          },
+          {
+            "title": "hotel",
+            "source": "http://whatsupgoa.com/dyn/establishments/articles/photo1-287.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#hotels",
+      "dialog_node": "node_3_1597146125491",
+      "previous_sibling": "node_9_1597146268095"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_1_1597145830785",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "hotelbooking",
+      "output": {
+        "generic": [
+          {
+            "title": "staying",
+            "source": "http://www.svenskahotels.com/wp-content/uploads/Casa-Anjuna.jpg",
+            "description": "grand hyaat",
+            "response_type": "image"
+          },
+          {
+            "title": "staying",
+            "source": "https://i.ytimg.com/vi/ybvkAVXdbr0/maxresdefault.jpg",
+            "description": "memory cascadium",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#hotelsbooking",
+      "dialog_node": "node_9_1597146268095",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "images",
+      "output": {
+        "generic": [
+          {
+            "title": "goa beach",
+            "source": "https://q-xx.bstatic.com/xdata/images/hotel/max1280x900/21168199.jpg?k=0f819a2f96f54d8e45dfb4e22e403d4d915b733dee85a1d6161a2c90ff2de25c&o=",
+            "response_type": "image"
+          },
+          {
+            "title": "goa beach",
+            "source": "https://www.tourmyindia.com/images/miramar-beach-goa2.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#images",
+      "dialog_node": "node_2_1597145943256",
+      "previous_sibling": "node_3_1597146125491"
+    },
+    {
+      "type": "standard",
+      "title": "asking",
+      "output": {
+        "generic": [
+          {
+            "source": "https://www.oyorooms.com/blog/wp-content/uploads/2016/09/Palolem.jpg",
+            "response_type": "image"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "source": "https://upload.wikimedia.org/wikipedia/commons/3/30/Arambol_beach_2009.jpg",
+            "response_type": "image"
+          },
+          {
+            "source": "https://dazlinggoa.files.wordpress.com/2015/05/goa-beach-wallpaper.jpg",
+            "response_type": "image"
+          },
+          {
+            "source": "https://uploads-ssl.webflow.com/576fd5a8f192527e50a4b95c/5c0e6928a90b66f0a989c278_best%20beaches%20in%20goa%20for%20foreigners-min.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#asking",
+      "dialog_node": "node_1_1597145902602",
+      "previous_sibling": "node_2_1597145943256"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "goa",
+  "language": "en",
+  "description": ""
+}
